@@ -18,6 +18,12 @@ func SayHello(to string) {
     fmt.Printf("Hello, %s \n", to)
 }
 
+func noop1(*fsm.State, *fsm.Controller) {
+}
+
+func noop2(*fsm.State, *fsm.Controller, fsm.Message) {
+}
+
 func Test1(t *testing.T) {
     ch := make(chan fsm.Message, 2)
     ch <- fsm.SimpleMessage{MessageTypeName: "foo1"}
@@ -62,12 +68,6 @@ func TestMessage(t *testing.T) {
     describe(c)
 }
 
-
-func noop1(*fsm.State, *fsm.Controller) {
-}
-
-func noop2(*fsm.State, *fsm.Controller, fsm.Message) {
-}
 
 
 func TestReceiveMessages(t *testing.T) {
