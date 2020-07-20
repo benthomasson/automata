@@ -33,6 +33,7 @@ type State struct {
     DefaultHandler func(*State, *Controller, Message)
     Enter func(*State, *Controller)
     Exit func(*State, *Controller)
+    Context interface{}
 }
 
 func LogEnter(s *State, a *Controller, msg Message) {
@@ -47,6 +48,7 @@ type Controller struct {
     State *State
     Handlers map[string]func(*Controller, Message)
     DefaultHandler func(*Controller, Message)
+    Context interface{}
 }
 
 func (c *Controller) ChangeState(s *State) {

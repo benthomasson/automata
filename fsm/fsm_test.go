@@ -62,7 +62,7 @@ func TestState(t *testing.T) {
 
     value = 1
 
-    s := &fsm.State{Name: "S1", Enter: noop1, Exit: setValue1}
+    s := &fsm.State{Name: "S1", Enter: noop1, Exit: setValue1, Context: 1}
     c := &fsm.Controller{State: s}
     c.ChangeState(s)
     if c.State != s {
