@@ -2,7 +2,7 @@ package fsm_test
 
 import (
     "testing"
-    "go_automata/fsm"
+    "automata/fsm"
     "fmt"
     "reflect"
     "time"
