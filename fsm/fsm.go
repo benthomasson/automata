@@ -45,15 +45,15 @@ func LogExit(s *State, a *Controller, msg Message) {
 
 type Controller struct {
     State *State
-    handlers map[string]func(*Controller, Message)
-    defaultHandler func(*Controller, Message)
+    Handlers map[string]func(*Controller, Message)
+    DefaultHandler func(*Controller, Message)
 }
 
 func (c *Controller) ChangeState(s *State) {
     if c.State != nil {
         c.State.Exit(c.State, c)
     }
-    log.Printf("ChangeState to %T", s)
+    log.Printf("ChangeState to %s", s.Name)
     c.State = s
     c.State.Enter(c.State, c)
 }
@@ -66,8 +66,8 @@ func (c *Controller) HandleMessage(msg Message) {
         handler(c.State, c, msg)
     } else if c.State.DefaultHandler != nil {
         c.State.DefaultHandler(c.State, c, msg)
-    } else if c.defaultHandler != nil {
-        c.defaultHandler(c, msg)
+    } else if c.DefaultHandler != nil {
+        c.DefaultHandler(c, msg)
     } else {
         log.Printf("No handler for %#v", msg)
     }

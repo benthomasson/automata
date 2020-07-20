@@ -2,7 +2,7 @@ package fsm_test
 
 import (
     "testing"
-    "automata_rpg/fsm"
+    "go_automata/fsm"
     "fmt"
     "reflect"
     "time"
@@ -62,7 +62,7 @@ func TestState(t *testing.T) {
 
     value = 1
 
-    s := &fsm.State{Enter: noop1, Exit: setValue1}
+    s := &fsm.State{Name: "S1", Enter: noop1, Exit: setValue1}
     c := &fsm.Controller{State: s}
     c.ChangeState(s)
     if c.State != s {
@@ -80,7 +80,7 @@ func TestMessage(t *testing.T) {
         "SimpleMessage": setValue2,
     }
 
-    s := &fsm.State{Enter: setValue1, Exit: noop1, Handlers: handlers}
+    s := &fsm.State{Name: "S1", Enter: setValue1, Exit: noop1, Handlers: handlers}
     c := &fsm.Controller{State: s}
     c.ChangeState(s)
     if c.State != s {
@@ -106,7 +106,7 @@ func TestReceiveMessages(t *testing.T) {
         "SimpleMessage": setValue2,
     }
 
-    s := &fsm.State{Enter: setValue1, Exit: noop1, Handlers: handlers}
+    s := &fsm.State{Name: "S1", Enter: setValue1, Exit: noop1, Handlers: handlers}
     c := &fsm.Controller{State: s}
     c.ChangeState(s)
     if c.State != s {
@@ -126,7 +126,7 @@ func TestReceiveMessages(t *testing.T) {
 
 func TestValue(t *testing.T) {
 
-    value = 1 
+    value = 1
 
     if value != 1 {
         t.Errorf("wrong value")
