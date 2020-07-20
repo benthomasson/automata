@@ -1,5 +1,5 @@
 
-# Go Automata
+# Automata
 
 An implementation of a finite state machine in Go.  
 
